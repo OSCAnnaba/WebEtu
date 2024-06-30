@@ -3,7 +3,6 @@ import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/Navbar";
-import { AuthProvider } from "@/components/AuthProvider";
 
 export const metadata: Metadata = {
   title: "WebEtu",
@@ -21,13 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex flex-col bg-gray-100 min-h-screen">
-        <AuthProvider>
-          <Navbar />
-          <main className="flex items-center justify-center flex-1 relative">
-            {children}
-          </main>
-          <Toaster />
-        </AuthProvider>
+        <Navbar />
+        <main className="flex items-center justify-center flex-1 relative">
+          {children}
+        </main>
+        <Toaster />
         <Analytics />
       </body>
     </html>

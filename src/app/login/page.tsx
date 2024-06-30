@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import { useState } from "react";
-import { useAuth } from "@/components/AuthProvider";
+import toast from "react-hot-toast";
+import Cookies from "js-cookie";
+import axios from "axios";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const { signIn } = useAuth();
 
   const Login = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -19,6 +19,42 @@ export default function LoginPage() {
       await signIn(username.trim(), password.trim());
     } finally {
       setLoading(false);
+    }
+  };
+
+  const signIn = async (username: string, password: string) => {
+    const toastId = toast.loading("Logging In..");
+
+    // const redirectTo = params.get("redirect");
+
+    try {
+      const response = await axios.post(
+        "https://progres.mesrs.dz/api/authentication/v1/",
+        {
+          username,
+          password,
+        },
+        {
+          timeout: 10000, // Timeout set to 10 seconds
+        }
+      );
+
+      Cookies.set("token", response.data.token);
+      Cookies.set("uuid", response.data.uuid);
+      Cookies.set("EtabId", response.data.etablissementId);
+      Cookies.set("user", response.data.userName);
+
+      window.location.reload();
+
+      toast.success("Logged In Successfully", { id: toastId });
+    } catch (err: any) {
+      if (axios.isCancel(err)) {
+        toast.error("Request timed out", { duration: 3000, id: toastId });
+      } else if (err.response && err.response.status === 403) {
+        toast.error("Invalid Credentials", { duration: 3000, id: toastId });
+      } else {
+        toast.error("Something Went Wrong", { duration: 3000, id: toastId });
+      }
     }
   };
 

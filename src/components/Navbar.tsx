@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useAuth } from "./AuthProvider";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+
 import {
   UserIcon,
   ArrowLeftStartOnRectangleIcon,
@@ -15,8 +17,15 @@ import {
 import { usePathname } from "next/navigation";
 
 const Navbar = () => {
-  const { user, signOut } = useAuth();
   const pathname = usePathname();
+  const [user, setUser] = useState(false);
+
+  useEffect(() => {
+    const token = Cookies.get("token");
+    if (token) {
+      setUser(true);
+    }
+  }, []);
 
   // State to manage dropdown menu visibility
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,6 +38,18 @@ const Navbar = () => {
   // Function to close menu
   const closeMenu = () => {
     setIsMenuOpen(false);
+  };
+
+  const router = useRouter();
+
+  const signOut = () => {
+    Cookies.remove("token");
+    Cookies.remove("uuid");
+    Cookies.remove("dias");
+    Cookies.remove("EtabId");
+    Cookies.remove("user");
+
+    window.location.reload();
   };
 
   return (
@@ -153,7 +174,7 @@ const Navbar = () => {
       )}
 
       {/* Desktop Menu */}
-      
+
       {!user && pathname !== "/login" && (
         <Link
           href="/login"

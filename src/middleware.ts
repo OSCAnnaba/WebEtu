@@ -4,7 +4,6 @@ import type { NextRequest } from "next/server";
 import { cookies } from "next/headers";
 import axios from "axios";
 import logger from "./utils";
-import { log } from "util";
 
 export async function middleware(req: NextRequest) {
   const token = req.cookies.get("token");
@@ -25,7 +24,6 @@ export async function middleware(req: NextRequest) {
   if (!dias && url.pathname !== "/login") {
     const newDias = await getDias();
     if (newDias) {
-      console.log("updated cookies");
       res.cookies.set("dias", JSON.stringify(newDias));
     }
   }
@@ -65,6 +63,6 @@ const getDias = async () => {
     return dias;
   } catch (error) {
     logger.error("Error updating cookies", user, "middleware");
-    return null;
+    throw Error("failed to update dias cookies");
   }
 };
