@@ -157,33 +157,33 @@ const Navbar = () => {
               </>
             )}
 
-            {!user && (
+            {/* {!user && (
               <Link
-                href="/login"
+                href="/"
                 className={`text-white hover:bg-white hover:text-green-600 px-4 py-2 rounded-md text-lg font-medium transition-colors duration-300 ${
-                  pathname === "/login" ? "hidden" : ""
+                  pathname === "/" ? "hidden" : ""
                 }`}
                 onClick={closeMenu} // Close menu on link click
               >
                 <ArrowRightEndOnRectangleIcon className="h-6 w-6" />
                 Sign In
               </Link>
-            )}
+            )} */}
           </div>
         </div>
       )}
 
       {/* Desktop Menu */}
 
-      {!user && pathname !== "/login" && (
+      {/* {!user && pathname !== "/" && (
         <Link
-          href="/login"
+          href="/"
           className="hidden md:flex gap-2 text-white hover:bg-white hover:text-green-600 px-4 py-2 rounded-md text-lg font-medium transition-colors duration-300"
         >
           <ArrowRightEndOnRectangleIcon className="h-6 w-6" />
           Sign In
         </Link>
-      )}
+      )} */}
 
       {user && (
         <>

@@ -9,19 +9,19 @@ export async function middleware(req: NextRequest) {
   const token = req.cookies.get("token");
   const url = req.nextUrl;
 
-  if (url.pathname === "/login" && token) {
+  if (url.pathname === "/" && token) {
     return NextResponse.redirect(new URL("/profile", req.url));
   }
 
-  if (!token && url.pathname !== "/login") {
-    return NextResponse.redirect(new URL(`/login`, req.url));
+  if (!token && url.pathname !== "/") {
+    return NextResponse.redirect(new URL(`/`, req.url));
   }
 
   const res = NextResponse.next();
 
   let dias = req.cookies.get("dias");
 
-  if (!dias && url.pathname !== "/login") {
+  if (!dias && url.pathname !== "/") {
     const newDias = await getDias();
     if (newDias) {
       res.cookies.set("dias", JSON.stringify(newDias));
@@ -33,7 +33,7 @@ export async function middleware(req: NextRequest) {
 
 // Define the paths where the middleware will apply
 export const config = {
-  matcher: ["/login", "/profile", "/group", "/exams", "/notes"],
+  matcher: ["/", "/profile", "/group", "/exams", "/notes"],
 };
 
 const getDias = async () => {
