@@ -85,7 +85,7 @@ export default async function Notes() {
               <p className="font-semibold">{item.rattachementMcMcLibelleFr}</p>
               <div className="flex gap-4">
                 <p className="font-bold text-lg">
-                  {item.note !== null ? item.note : "Empty"}
+                  {item.note != null ? item.note : "Null"}
                 </p>
                 <p className="font-bold text-lg text-gray-700">{item.apCode}</p>
               </div>

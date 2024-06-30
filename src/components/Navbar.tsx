@@ -240,7 +240,7 @@ const Navbar = () => {
             onClick={() => signOut()}
           >
             <ArrowLeftStartOnRectangleIcon className="h-6 w-6" />
-            Log out
+            Log Out
           </button>
         </>
       )}
