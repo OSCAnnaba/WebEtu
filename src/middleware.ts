@@ -61,8 +61,17 @@ const getDias = async () => {
       if (anneeAcademiqueId <= 19) dias.push({ id, anneeAcademiqueId });
     }
     return dias;
-  } catch (error) {
-    logger.error("Error updating cookies", user, "middleware");
-    throw Error("failed to update dias cookies");
+  } catch (error: any) {
+    logger.error(`Error - ${error}`, user, "middleware");
+    if (error.response) {
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    } else if (error.request) {
+      console.log("error - request");
+    } else {
+      console.log("Error Unknown");
+    }
+    return null;
   }
 };
