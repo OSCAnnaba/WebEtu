@@ -3,8 +3,13 @@ import type { NextRequest } from "next/server";
 
 import { cookies } from "next/headers";
 import axios from "axios";
+import axiosRetry from "axios-retry";
 import logger from "./utils";
 
+axiosRetry(axios, {
+  retries: 3,
+  retryDelay: axiosRetry.exponentialDelay,
+});
 export async function middleware(req: NextRequest) {
   const token = req.cookies.get("token");
   const url = req.nextUrl;
@@ -49,7 +54,7 @@ const getDias = async () => {
         headers: {
           Authorization: token,
         },
-        timeout: 100000, // Timeout set to 10 seconds
+        timeout: 100000,
       }
     );
     logger.info("dias fetched successfully", user, "middleware");
