@@ -91,8 +91,8 @@ function Enrollments({ dias, currentYear }: any) {
                     <BanknotesIcon
                       className={`w-6 h-6 lg:w-8 lg:h-8 ${
                         dia.fraisInscriptionPaye
-                          ? "text-yellow-500"
-                          : `text-gray-400 ${dia.anneeAcademiqueId == currentYear && "hover:text-green-500"}`
+                          ? "text-green-500"
+                          : `text-red-500 ${dia.anneeAcademiqueId == currentYear && "hover:text-green-500"}`
                       }`}
                     />
                     <div className="hidden group-hover:block absolute min-w-fit p-2 bg-gray-200 rounded text-xs">
@@ -114,8 +114,8 @@ function Enrollments({ dias, currentYear }: any) {
                     <MapIcon
                       className={`w-6 h-6 lg:w-8 lg:h-8 ${
                         dia.transportPaye
-                          ? "text-yellow-500"
-                          : `text-gray-400 ${dia.anneeAcademiqueId == currentYear && "hover:text-green-500"}`
+                          ? "text-green-500"
+                          : `text-red-500 ${dia.anneeAcademiqueId == currentYear && "hover:text-green-500"}`
                       }`}
                     />
                     <div className="hidden group-hover:block absolute min-w-fit p-2 bg-gray-200 rounded text-xs">
