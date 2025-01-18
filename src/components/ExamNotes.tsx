@@ -33,7 +33,9 @@ function ModuleCard({ module }: { module: Module }) {
     >
       <h4 className="font-semibold flex-1">{module.mcLibelleFr}</h4>
       <p className="font-bold ml-2 text-gray-700">
-        {module.noteExamen !== null ? module.noteExamen : "Empty"}
+        {module.noteExamen !== null && module.noteExamen !== undefined
+          ? module.noteExamen
+          : "N/A"}
       </p>
     </div>
   )

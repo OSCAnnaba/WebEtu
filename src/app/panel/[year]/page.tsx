@@ -322,7 +322,7 @@ const renderSemesterResultItem = (result: any) => {
                       <p className="text-gray-800">
                         <span className="font-semibold">Average: </span>
                         <span className={`${mcAverageClass} font-bold`}>
-                          {mc.moyenneGenerale ? mc.moyenneGenerale : "Empty"}
+                          {mc.moyenneGenerale ? mc.moyenneGenerale : "N/A"}
                         </span>
                       </p>
                     </div>

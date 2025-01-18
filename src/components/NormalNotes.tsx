@@ -33,7 +33,7 @@ function NormalNotes({ normal }: NormalNotesProps) {
             <p className="font-semibold mr-4">{rattachementMcMcLibelleFr}</p>
             <div className="flex gap-4 ml-2">
               <p className="font-bold text-gray-700">
-                {noteValue == null ? "Empty" : noteValue}
+                {noteValue == null ? "N/A" : noteValue}
               </p>
               <p className="font-bold">{apCode}</p>
             </div>
