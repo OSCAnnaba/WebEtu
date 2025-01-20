@@ -1,6 +1,7 @@
 import logger from "@/utils/logger"
 import { longCache, shortCache } from "@/utils/cache"
 import { fetchData, getCookieData } from "./helpers"
+import { notFound } from "next/navigation"
 
 export const getDias = async () => {
   const { token, user, uuid, tokenHash } = getCookieData()
@@ -24,7 +25,7 @@ export const getDias = async () => {
     return response.data
   } catch (error: any) {
     logger.error("Error", user, "getDias")
-    throw new Error(error)
+    notFound()
   }
 }
 
