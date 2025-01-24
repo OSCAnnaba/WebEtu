@@ -154,7 +154,7 @@ export default function LoginPage() {
           </label>
           <div className="group relative">
             <QuestionMarkCircleIcon className="text-gray-700 hover:text-green-600 w-6" />
-            <span className="hidden absolute group-hover:flex bg-gray-700/80 text-white w-56 p-2 rounded-lg text-left">
+            <span className="hidden absolute -translate-x-1/2 group-hover:flex bg-gray-700/80 text-white w-56 p-2 rounded-lg text-left">
               if checked your session cookie would be saved for 7 days, else it
               would be deleted as soon as your browser is closed
             </span>
