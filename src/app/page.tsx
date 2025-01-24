@@ -148,15 +148,14 @@ export default function LoginPage() {
           />
           <label
             htmlFor="rememberMe"
-            className="text-sm sm:text-md flex-wrap text-gray-600 font-bold select-none"
+            className="text-sm sm:text-base text-gray-700 font-bold select-none"
           >
             Remember Me
           </label>
           <div className="group relative">
-            <QuestionMarkCircleIcon className="text-gray-700 hover:text-green-600 w-6" />
-            <span className="hidden absolute -translate-x-1/2 group-hover:flex bg-gray-700/80 text-white w-56 p-2 rounded-lg text-left">
-              if checked your session cookie would be saved for 7 days, else it
-              would be deleted as soon as your browser is closed
+            <QuestionMarkCircleIcon className="text-gray-700 hover:text-green-600 w-5" />
+            <span className="text-xs md:text-base hidden absolute -translate-x-1/3 group-hover:flex bg-gray-700/80 text-white w-56 p-2 m-1 rounded-md text-left opacity-95">
+              Check this box to stay signed in for 7 days
             </span>
           </div>
         </div>
