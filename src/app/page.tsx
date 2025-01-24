@@ -10,6 +10,7 @@ import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline"
 export default function LoginPage() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+  const [rememberMe, setRememberMe] = useState(false)
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
 
@@ -39,8 +40,13 @@ export default function LoginPage() {
         },
       )
 
-      Cookies.set("token", response.data.token)
-      Cookies.set("uuid", response.data.uuid)
+      const options = {
+        secure: true,
+        expires: rememberMe ? 7 : undefined,
+      }
+
+      Cookies.set("token", response.data.token, options)
+      Cookies.set("uuid", response.data.uuid, options)
 
       window.location.reload()
 
@@ -91,9 +97,10 @@ export default function LoginPage() {
             name="username"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
+            disabled={loading}
             placeholder="Example: 202400000001"
             required
-            className="w-full p-2 sm:p-3 border border-green-700 rounded focus:outline-none focus:border-green-500"
+            className="w-full p-2 sm:p-3 border disabled:border-gray-700 border-green-700 invalid:border-red-700 rounded focus:outline-none focus:border-green-500"
           />
         </div>
         <div className="mb-4 sm:mb-6 md:mb-8 text-left">
@@ -110,13 +117,15 @@ export default function LoginPage() {
               name="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
+              disabled={loading}
               required
-              className="w-full p-2 sm:p-3 border border-green-700 rounded focus:outline-none focus:border-green-500"
+              className="w-full p-2 sm:p-3 border disabled:border-gray-700 border-green-700 invalid:border-red-700 rounded focus:outline-none focus:border-green-500"
             />
             <button
               type="button"
+              data-loading={loading}
               aria-label="Toggle Password Visibility"
-              className="absolute right-2 top-1 bottom-1 text-green-700"
+              className="absolute right-2 top-1 bottom-1 text-green-700 data-[loading=true]:text-gray-700"
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? (
@@ -126,6 +135,21 @@ export default function LoginPage() {
               )}
             </button>
           </div>
+        </div>
+        <div className="mb-4 sm:mb-6 text-left">
+          <label htmlFor="rememberMe" className="inline-flex items-center">
+            <input
+              type="checkbox"
+              id="rememberMe"
+              name="rememberMe"
+              onChange={() => setRememberMe(!rememberMe)}
+              disabled={loading}
+              className="mr-2 border border-green-700 rounded focus:outline-none focus:border-green-500"
+            />
+            <span className="text-sm sm:text-md text-gray-600 font-bold select-none">
+              Remember Me
+            </span>
+          </label>
         </div>
         <button
           type="submit"
