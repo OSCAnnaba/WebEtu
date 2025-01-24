@@ -6,6 +6,7 @@ import toast from "react-hot-toast"
 import Cookies from "js-cookie"
 import axios from "axios"
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline"
+import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline"
 
 export default function LoginPage() {
   const [username, setUsername] = useState("")
@@ -83,8 +84,8 @@ export default function LoginPage() {
         className="mx-auto mb-6"
         priority={true} // Disable lazy loading for the LCP image
       />
-      <form className="flex flex-col" onSubmit={Login}>
-        <div className="mb-4 sm:mb-6 text-left">
+      <form className="flex flex-col gap-4 md:gap-6" onSubmit={Login}>
+        <div className="text-left">
           <label
             htmlFor="username"
             className="block mb-2 text-sm sm:text-md text-gray-600 font-bold"
@@ -103,7 +104,7 @@ export default function LoginPage() {
             className="w-full p-2 sm:p-3 border disabled:border-gray-700 border-green-700 invalid:border-red-700 rounded focus:outline-none focus:border-green-500"
           />
         </div>
-        <div className="mb-4 sm:mb-6 md:mb-8 text-left">
+        <div className="text-left">
           <label
             htmlFor="password"
             className="block mb-2 text-sm sm:text-md text-gray-600 font-bold"
@@ -136,20 +137,28 @@ export default function LoginPage() {
             </button>
           </div>
         </div>
-        <div className="mb-4 sm:mb-6 text-left">
-          <label htmlFor="rememberMe" className="inline-flex items-center">
-            <input
-              type="checkbox"
-              id="rememberMe"
-              name="rememberMe"
-              onChange={() => setRememberMe(!rememberMe)}
-              disabled={loading}
-              className="mr-2 border border-green-700 rounded focus:outline-none focus:border-green-500"
-            />
-            <span className="text-sm sm:text-md text-gray-600 font-bold select-none">
-              Remember Me
-            </span>
+        <div className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            id="rememberMe"
+            name="rememberMe"
+            onChange={() => setRememberMe(!rememberMe)}
+            disabled={loading}
+            className="border border-green-700 rounded focus:outline-none focus:border-green-500"
+          />
+          <label
+            htmlFor="rememberMe"
+            className="text-sm sm:text-md flex-wrap text-gray-600 font-bold select-none"
+          >
+            Remember Me
           </label>
+          <div className="group relative">
+            <QuestionMarkCircleIcon className="text-gray-700 hover:text-green-600 w-6" />
+            <span className="hidden absolute group-hover:flex bg-gray-700/80 text-white w-56 p-2 rounded-lg text-left">
+              if checked your session cookie would be saved for 7 days, else it
+              would be deleted as soon as your browser is closed
+            </span>
+          </div>
         </div>
         <button
           type="submit"
