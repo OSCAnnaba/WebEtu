@@ -15,25 +15,26 @@ function Enrollments({ dias, currentYear }: any) {
         <div
           key={index}
           className={`rounded p-4 border border-gray-300 hover:bg-gray-50/90 capitalize transition-colors duration-300 ${
-            open == dia.anneeAcademiqueId
+            open == dia.anneeacademiquecode
               ? "bg-gray-50/90 border-green-500"
               : ""
           }`}
         >
           <div
-            onClick={() => setOpen(dia.anneeAcademiqueId)}
+            onClick={() => setOpen(dia.anneeacademiquecode)}
             className="flex items-center gap-2 cursor-pointer"
           >
             <div className="flex flex-col sm:flex-row text-xs sm:text-sm">
               <span
                 className={`text-center m-1 p-2 border ${
-                  currentYear == dia.anneeAcademiqueId
+                  currentYear == dia.anneeacademiquecode
                     ? "text-green-500 border-green-500"
                     : "text-gray-500 border-gray-500"
                 } rounded`}
               >
-                {dia.anneeAcademiqueCode}
+                {dia.anneeacademiquecode}
               </span>
+              {/*
               <span
                 className={`text-center m-1 p-2 border ${
                   dia.cycleCode == "M"
@@ -43,45 +44,46 @@ function Enrollments({ dias, currentYear }: any) {
               >
                 {dia.niveauCode}
               </span>
+              */}
             </div>
             <span className="flex-1 text-sm sm:text-base lg:text-lg font-bold text-left truncate">
-              {dia.ofLlSpecialite ? dia.ofLlSpecialite : dia.ofLlFiliere}
+              {dia.ofllspecialite ? dia.ofllspecialite : dia.ofllfiliere}
             </span>
           </div>
 
-          {open == dia.anneeAcademiqueId && (
+          {open == dia.anneeacademiquecode && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 text-xs sm:text-sm">
               <div className="flex flex-col gap-2 text-left">
                 <label className="font-bold">Institution:</label>
                 <span className={dataSpanStyle}>
-                  {dia.llEtablissementLatin}
+                  {dia.lletablissementlatin}
                 </span>
               </div>
               <div className="flex flex-col gap-2 text-left">
                 <label className="font-bold">Domain:</label>
-                <span className={dataSpanStyle}>{dia.ofLlDomaine}</span>
+                <span className={dataSpanStyle}>{dia.oflldomaine}</span>
               </div>
               <div className="flex flex-col gap-2 text-left">
                 <label className="font-bold">Field:</label>
-                <span className={dataSpanStyle}>{dia.ofLlFiliere}</span>
+                <span className={dataSpanStyle}>{dia.ofllfiliere}</span>
               </div>
               <div className="flex flex-col gap-2 text-left">
                 <label className="font-bold">Level:</label>
-                <span className={dataSpanStyle}>{dia.niveauLibelleLongLt}</span>
+                <span className={dataSpanStyle}>{dia.niveaulibellelonglt}</span>
               </div>
-              {dia.ofLlSpecialite && (
+              {dia.ofllspecialite && (
                 <div className="flex flex-col gap-2 text-left">
                   <label className="font-bold">Speciality:</label>
-                  <span className={dataSpanStyle}>{dia.ofLlSpecialite}</span>
+                  <span className={dataSpanStyle}>{dia.ofllspecialite}</span>
                 </div>
               )}
               <div className="flex justify-between items-center p-4 md:col-span-2">
                 <div className="flex gap-2 text-left">
                   <span
-                    className={`group relative ${!dia.fraisInscriptionPaye && dia.anneeAcademiqueId == currentYear && "cursor-pointer"}`}
+                    className={`group relative ${!dia.fraisInscriptionPaye && dia.anneeacademiquecode == currentYear && "cursor-pointer"}`}
                     onClick={() =>
                       !dia.fraisInscriptionPaye &&
-                      dia.anneeAcademiqueId == currentYear &&
+                      dia.anneeacademiquecode == currentYear &&
                       window.open(
                         process.env.NEXT_PUBLIC_EPAIEMENT_INSCRIPTION,
                         "_blank",
@@ -92,7 +94,7 @@ function Enrollments({ dias, currentYear }: any) {
                       className={`w-6 h-6 lg:w-8 lg:h-8 ${
                         dia.fraisInscriptionPaye
                           ? "text-green-500"
-                          : `text-red-500 ${dia.anneeAcademiqueId == currentYear && "hover:text-green-500"}`
+                          : `text-red-500 ${dia.anneeacademiquecode == currentYear && "hover:text-green-500"}`
                       }`}
                     />
                     <div className="hidden group-hover:block absolute min-w-fit p-2 bg-gray-200 rounded text-xs">
@@ -101,10 +103,10 @@ function Enrollments({ dias, currentYear }: any) {
                     </div>
                   </span>
                   <span
-                    className={`group relative ${!dia.transportPaye && dia.anneeAcademiqueId == currentYear && "cursor-pointer"}`}
+                    className={`group relative ${!dia.transportPaye && dia.anneeacademiquecode == currentYear && "cursor-pointer"}`}
                     onClick={() =>
                       !dia.transportPaye &&
-                      dia.anneeAcademiqueId == currentYear &&
+                      dia.anneeacademiquecode == currentYear &&
                       window.open(
                         process.env.NEXT_PUBLIC_EPAIEMENT_TRANSPORT,
                         "_blank",
@@ -115,7 +117,7 @@ function Enrollments({ dias, currentYear }: any) {
                       className={`w-6 h-6 lg:w-8 lg:h-8 ${
                         dia.transportPaye
                           ? "text-green-500"
-                          : `text-red-500 ${dia.anneeAcademiqueId == currentYear && "hover:text-green-500"}`
+                          : `text-red-500 ${dia.anneeacademiquecode == currentYear && "hover:text-green-500"}`
                       }`}
                     />
                     <div className="hidden group-hover:block absolute min-w-fit p-2 bg-gray-200 rounded text-xs">
