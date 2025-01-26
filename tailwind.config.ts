@@ -7,7 +7,7 @@ const config: Config = {
       keyframes: {
         "bg-pulse": {
           "0%, 100%": { backgroundColor: "rgb(219, 222, 231)" },
-          "50%": { backgroundColor: "rgb(211, 216, 222)" },
+          "50%": { backgroundColor: "rgb(206, 209, 217)" },
         },
       },
       animation: {
