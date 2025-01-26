@@ -25,13 +25,7 @@ function Enrollments({ dias, currentYear }: any) {
             className="flex items-center gap-2 cursor-pointer"
           >
             <div className="flex flex-col sm:flex-row text-xs sm:text-sm">
-              <span
-                className={`text-center m-1 p-2 border ${
-                  currentYear == dia.anneeacademiquecode
-                    ? "text-green-500 border-green-500"
-                    : "text-gray-500 border-gray-500"
-                } rounded`}
-              >
+              <span className="text-center m-1 p-2 border text-green-500 border-green-500 rounded">
                 {dia.anneeacademiquecode}
               </span>
               {/*
@@ -78,6 +72,7 @@ function Enrollments({ dias, currentYear }: any) {
                 </div>
               )}
               <div className="flex justify-between items-center p-4 md:col-span-2">
+                {/*
                 <div className="flex gap-2 text-left">
                   <span
                     className={`group relative ${!dia.fraisInscriptionPaye && dia.anneeacademiquecode == currentYear && "cursor-pointer"}`}
@@ -125,6 +120,7 @@ function Enrollments({ dias, currentYear }: any) {
                     </div>
                   </span>
                 </div>
+                */}
                 <Link
                   prefetch={false}
                   href={`/panel/${dia.id}`}
