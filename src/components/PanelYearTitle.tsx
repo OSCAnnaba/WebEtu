@@ -10,8 +10,8 @@ function PanelYearTitle({ dias }: any) {
   return (
     title && (
       <div className="md:text-lg lg:text-xl font-bold text-center capitalize">
-        {title.niveauLibelleLongLt} -{" "}
-        {title.ofLlSpecialite ? title.ofLlSpecialite : title.ofLlFiliere}
+        {title.niveaulibellelonglt} -{" "}
+        {title.ofllspecialite ? title.ofllspecialite : title.ofllfiliere}
       </div>
     )
   )
