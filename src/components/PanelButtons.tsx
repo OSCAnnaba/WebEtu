@@ -25,7 +25,7 @@ function PanelButtons({ dias, currentYear }: any) {
             <span
               className={`text-center m-1 p-1 lg:m-2 lg:p-2 border ${selectedDia.cycleCode == "M" ? "text-purple-500 border-purple-500" : "text-blue-500 border-blue-500"} rounded`}
             >
-              {selectedDia.niveauCode}
+              {selectedDia.niveauLibelleLongLt}
             </span>
           </MenuButton>
           <MenuItems

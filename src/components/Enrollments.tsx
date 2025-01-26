@@ -34,15 +34,17 @@ function Enrollments({ dias, currentYear }: any) {
               >
                 {dia.anneeAcademiqueCode}
               </span>
-              <span
-                className={`text-center m-1 p-2 border ${
-                  dia.cycleCode == "M"
-                    ? "text-purple-500 border-purple-500"
-                    : "text-blue-500 border-blue-500"
-                } rounded`}
-              >
-                {dia.niveauCode}
-              </span>
+              {dia.niveauCode && (
+                <span
+                  className={`text-center m-1 p-2 border ${
+                    dia.cycleCode == "M"
+                      ? "text-purple-500 border-purple-500"
+                      : "text-blue-500 border-blue-500"
+                  } rounded`}
+                >
+                  {dia.niveauCode}
+                </span>
+              )}
             </div>
             <span className="flex-1 text-sm sm:text-base lg:text-lg font-bold text-left truncate">
               {dia.ofLlSpecialite ? dia.ofLlSpecialite : dia.ofLlFiliere}

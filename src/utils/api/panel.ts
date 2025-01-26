@@ -124,13 +124,16 @@ export const getExamsNotes = async (id: number) => {
       token,
     )
 
+    console.log(response.data)
     const data = parseData(response.data)
+    console.log(data)
     shortCache.set(cacheKey, data)
 
     logger.info("Success", user, "getExamsNotes")
 
     return data
   } catch (error: any) {
+    console.log(error)
     logger.error("Error", user, "getExamsNotes")
     return { firstSemExams: null, secondSemExams: null }
   }
@@ -234,7 +237,7 @@ export const getGroup = async (id: number) => {
     return sortedData.reduce((semesterInfo: any[], item: any) => {
       if (!item.nomSection) return semesterInfo
 
-      const semester = item.periodeLibelleLongLt
+      const semester = item.periodelibellelonglt
       const group = item.nomGroupePedagogique
       const section =
         item.nomSection === "Section" ? "Section 1" : item.nomSection
