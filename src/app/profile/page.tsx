@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { getProfileData, getLogo, getImage } from "@/utils/api/profile"
-import ErrorComponent from "@/components/ErrorComponent"
+import ErrorsComponent from "@/components/ErrorsComponent"
 
 export const metadata = {
   title: "WebEtu - Profile",
@@ -102,11 +102,19 @@ const ProfilePage = async () => {
       </div>
     )
   } else {
-    return (
-      getProfileResponse.error && (
-        <ErrorComponent error={getProfileResponse.error} />
-      )
-    )
+    console.log("Text:", getProfileResponse.error)
+    let errorType: "fetching" | "connection" | "serverDown"
+
+    if (getProfileResponse.error === "Error Fetching Profile Data") {
+      errorType = "serverDown"
+    } else if (!navigator.onLine) {
+      errorType = "connection"
+    } else {
+      errorType = "fetching"
+    }
+
+    console.log("Error Type:", errorType)
+    return <ErrorsComponent errorType={errorType} />
   }
 }
 
